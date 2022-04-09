@@ -1,14 +1,14 @@
 pipeline {
 environment {
 registry = "ptdpratik362/java-test-maven"
-registryCredential = 'docker_id'
+registryCredential = 'docker_hub_id'
 dockerImage = ''
 }
 agent any
 stages {
 stage('Cloning Git Repo') {
 steps {
-git([url: 'https://github.com/ptdpratik362/java-spring-boot-maven.git', branch: 'main', credentialsId: 'github'])
+git([url: 'https://github.com/ptdpratik362/java-spring-boot-maven.git', branch: 'main', credentialsId: 'github_id'])
 }
 }
 stage('Building image of Docker') {
