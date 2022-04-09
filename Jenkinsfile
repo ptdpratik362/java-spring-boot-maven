@@ -1,6 +1,6 @@
 pipeline {
 environment {
-registry = "ptdpratik362/java-test-maven"
+registry = "ptdpratik362/java-maven"
 registryCredential = 'docker_hub_id'
 dockerImage = ''
 }
