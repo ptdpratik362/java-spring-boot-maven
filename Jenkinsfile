@@ -33,14 +33,14 @@ steps{
 script{
 def remote = [:]
 remote.name = 'server'
-remote.host = '3.15.204.76'
+remote.host = '52.15.128.34'
 remote.user = 'ec2-user'
 remote.identityFile = "/var/lib/jenkins/.ssh/id.pem"
 remote.allowAnyHosts = true
 sshPut remote: remote, from: './docker-compose.yaml', into: '.'
 sshCommand remote: remote, command: "docker-compose top"
 sshCommand remote: remote, command: "docker-compose down"
-sshCommand remote: remote, command: "docker rmi -f ptdpratik362/java-test-maven:latest"
+sshCommand remote: remote, command: "docker rmi -f ptdpratik362/java-maven:latest"
 sshCommand remote: remote, command: "docker-compose up -d"
 sshCommand remote: remote, command: "docker ps"
 }
