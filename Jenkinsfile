@@ -38,7 +38,7 @@ remote.user = 'ec2-user'
 remote.identityFile = "/var/lib/jenkins/.ssh/id.pem"
 remote.allowAnyHosts = true
 sshPut remote: remote, from: './docker-compose.yaml', into: '.'
-sshCommand remote: remote, command: "docker-compose top"
+sshCommand remote: remote, command: "docker-compose --version"
 sshCommand remote: remote, command: "docker-compose down"
 sshCommand remote: remote, command: "docker rmi -f ptdpratik362/final_build:latest"
 sshCommand remote: remote, command: "docker-compose up -d"
