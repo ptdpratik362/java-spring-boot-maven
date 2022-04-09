@@ -1,6 +1,6 @@
 pipeline {
 environment {
-registry = "ptdpratik/demo"
+registry = "ptdpratik/final_build"
 registryCredential = 'docker_hub_id'
 dockerImage = ''
 }
@@ -40,7 +40,7 @@ remote.allowAnyHosts = true
 sshPut remote: remote, from: './docker-compose.yaml', into: '.'
 sshCommand remote: remote, command: "docker-compose top"
 sshCommand remote: remote, command: "docker-compose down"
-sshCommand remote: remote, command: "docker rmi -f ptdpratik362/demo:latest"
+sshCommand remote: remote, command: "docker rmi -f ptdpratik362/final_build:latest"
 sshCommand remote: remote, command: "docker-compose up -d"
 sshCommand remote: remote, command: "docker ps"
 }
