@@ -6,12 +6,12 @@ dockerImage = ''
 }
 agent any
 stages {
-stage('Cloning our Git') {
+stage('Cloning Git Repo') {
 steps {
 git([url: 'https://github.com/ptdpratik362/java-spring-boot-maven.git', branch: 'main', credentialsId: 'github'])
 }
 }
-stage('Building our image') {
+stage('Building image of Docker') {
 steps{
 script {
 dockerImage = docker.build registry 
