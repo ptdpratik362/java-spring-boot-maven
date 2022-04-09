@@ -1,6 +1,6 @@
 version: '3.4'
 services:
-  maven-project:
+  maven-project_1:
     build: .
     image: demo:latest
     ports:
