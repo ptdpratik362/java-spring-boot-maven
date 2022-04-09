@@ -1,6 +1,6 @@
 version: '3.4'
 services:
   maven-project_1:
-    image: ptdpratik/final_build:latest
+    image: ptdpratik/final_build_1:latest
     ports:
       - "8081:8080"
