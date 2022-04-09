@@ -1,10 +1,56 @@
 pipeline {
-    agent { docker { image 'maven:3.8.4-openjdk-11-slim' } }
-    stages {
-        stage('build') {
-            steps {
-                sh 'mvn --version'
-            }
-        }
-    }
+environment {
+registry = "ptdpratik362/java-test-maven"
+registryCredential = 'docker_id'
+dockerImage = ''
+}
+agent any
+stages {
+stage('Cloning our Git') {
+steps {
+git([url: 'https://github.com/ptdpratik362/java-spring-boot-maven.git', branch: 'main', credentialsId: 'github'])
+}
+}
+stage('Building our image') {
+steps{
+script {
+dockerImage = docker.build registry 
+}
+}
+}
+stage('Deploy our image') {
+steps{
+script {
+docker.withRegistry( '', registryCredential ) {
+dockerImage.push("$BUILD_NUMBER")
+dockerImage.push("latest")
+}
+}
+}
+}
+stage('Run container on AWS Final'){
+steps{
+script{
+def remote = [:]
+remote.name = 'server'
+remote.host = '52.15.128.34'
+remote.user = 'ec2-user'
+remote.identityFile = "/var/lib/jenkins/.ssh/id_rsa.pem"
+remote.allowAnyHosts = true
+sshPut remote: remote, from: './docker-compose.yml', into: '.'
+sshCommand remote: remote, command: "docker-compose top"
+sshCommand remote: remote, command: "docker-compose down"
+sshCommand remote: remote, command: "docker rmi -f ptdpratik362/java-test-maven:latest"
+sshCommand remote: remote, command: "docker-compose up -d"
+sshCommand remote: remote, command: "docker ps"
+}
+}
+}
+stage('Cleaning up') {
+steps{
+sh "docker rmi $registry:latest"
+sh "docker rmi $registry:$BUILD_NUMBER"
+}
+}
+}
 }
