@@ -18,7 +18,7 @@ dockerImage = docker.build registry
 }
 }
 }
-stage('Deploy our image') {
+stage('Deploy image') {
 steps{
 script {
 docker.withRegistry( '', registryCredential ) {
@@ -28,7 +28,7 @@ dockerImage.push("latest")
 }
 }
 }
-stage('Run container on AWS Final'){
+stage('Run container on AWS Server'){
 steps{
 script{
 def remote = [:]
@@ -37,7 +37,7 @@ remote.host = '52.15.128.34'
 remote.user = 'ec2-user'
 remote.identityFile = "/var/lib/jenkins/.ssh/id_rsa.pem"
 remote.allowAnyHosts = true
-sshPut remote: remote, from: './docker-compose.yml', into: '.'
+sshPut remote: remote, from: './docker-compose.yaml', into: '.'
 sshCommand remote: remote, command: "docker-compose top"
 sshCommand remote: remote, command: "docker-compose down"
 sshCommand remote: remote, command: "docker rmi -f ptdpratik362/java-test-maven:latest"
