@@ -35,7 +35,7 @@ def remote = [:]
 remote.name = 'server'
 remote.host = '3.15.204.76'
 remote.user = 'ec2-user'
-remote.identityFile = "/var/lib/jenkins/.ssh/id_rsa.pem"
+remote.identityFile = "/var/lib/jenkins/.ssh/id.pem"
 remote.allowAnyHosts = true
 sshPut remote: remote, from: './docker-compose.yaml', into: '.'
 sshCommand remote: remote, command: "docker-compose top"
