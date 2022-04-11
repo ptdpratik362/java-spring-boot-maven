@@ -33,7 +33,7 @@ steps{
 script{
 def remote = [:]
 remote.name = 'server'
-remote.host = '52.14.121.169'
+remote.host = '3.85.172.37'
 remote.user = 'ec2-user'
 remote.identityFile = "/var/lib/jenkins/.ssh/id.pem"
 remote.allowAnyHosts = true
