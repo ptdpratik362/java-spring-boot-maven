@@ -1,6 +1,6 @@
 pipeline {
 environment {
-//registry = "ptdpratik/final_build_1"
+registry = "ptdpratik/final_build_1"
 //registryCredential = 'docker_hub_id'
 dockerImage = ''
 }
@@ -9,7 +9,7 @@ stages {
 stage('Cloning Repro & Build Image') {
 steps {
 git([url: 'https://github.com/ptdpratik362/java-spring-boot-maven.git', branch: 'main', credentialsId: 'github_id'])
-dockerImage = docker.build "ptdpratik/final_build_1"
+dockerImage = docker.build registry
 }
 }
 //stage('Building our image') {
@@ -47,8 +47,8 @@ sshCommand remote: remote, command: "docker ps"
 }
 stage('Cleaning up') {
 steps{
-sh "docker rmi ptdpratik/final_build_1:latest"
-sh "docker rmi ptdpratik/final_build_1:$BUILD_NUMBER"
+sh "docker rmi $registry:latest"
+sh "docker rmi $registry:$BUILD_NUMBER"
 }
 }
 }
