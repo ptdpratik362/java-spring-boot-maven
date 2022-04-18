@@ -9,7 +9,7 @@ stages {
 stage('Cloning Repro & Build Image') {
 steps {
 git([url: 'https://github.com/ptdpratik362/java-spring-boot-maven.git', branch: 'main', credentialsId: 'github_id'])
-dockerImage = docker.build ptdpratik/final_build_1 
+dockerImage = docker.build "ptdpratik/final_build_1"
 }
 }
 //stage('Building our image') {
