@@ -34,13 +34,13 @@ steps{
 script{
 def remote = [:]
 remote.name = 'app server'
-remote.host = '54.160.216.126'
+remote.host = '10.202.19.81'
 remote.user = 'ec2-user'
 remote.identityFile = "/var/lib/jenkins/.ssh/id_rsa.pem"
 remote.allowAnyHosts = true
-sshCommand remote: remote, command: "docker rmi -f kaushalhirani/final-test:latest"
-sshCommand remote: remote, command: "docker rm -f FINAL_TEST"
-sshCommand remote: remote, command: "docker run --name FINAL_TEST -d -p 8080:8080 kaushalhirani/final-test:latest"
+sshCommand remote: remote, command: "docker rmi -f ptdpratik/final_build_1:latest"
+sshCommand remote: remote, command: "docker rm -f build"
+sshCommand remote: remote, command: "docker run --name build -d -p 8081:8080 ptdpratik/final_build_1:latest"
 sshCommand remote: remote, command: "docker ps"
 }
 }
