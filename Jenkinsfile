@@ -34,8 +34,8 @@ steps{
 script{
 def remote = [:]
 remote.name = 'app server'
-remote.host = '10.202.19.81'
-remote.user = 'ec2-user'
+remote.host = '35.174.57.232'
+remote.user = 'splunk'
 remote.identityFile = "/var/lib/jenkins/.ssh/id_rsa.pem"
 remote.allowAnyHosts = true
 sshCommand remote: remote, command: "docker rmi -f ptdpratik/final_build_1:latest"
