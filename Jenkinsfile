@@ -1,6 +1,6 @@
 pipeline {
 environment {
-registry = "ptdpratik362/final_build_1"
+registry = "ptdpratik/final_build_1"
 //registryCredential = 'docker_hub_id'
 dockerImage = ''
 }
