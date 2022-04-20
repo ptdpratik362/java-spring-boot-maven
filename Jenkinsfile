@@ -32,10 +32,10 @@ stage('Run container on AWS Final'){
 steps{
 script{
 def remote = [:]
-remote.name = 'app server'
+remote.name = 'sh1 - cia-7547-test - search-head'
 remote.host = '35.174.57.232'
 remote.user = 'splunk'
-//remote.identityFile = "/var/lib/jenkins/.ssh/id_rsa.pem"
+remote.identityFile = "/var/lib/jenkins/.ssh/id_rsa.pem"
 remote.allowAnyHosts = true
 sshPut remote: remote, from: './docker-compose.yaml', into: '.'
 sshCommand remote: remote, command: "docker-compose top"
