@@ -34,7 +34,7 @@ script{
 def remote = [:]
 remote.name = 'sh1 - cia-7547-test - search-head'
 remote.host = '35.174.57.232'
-remote.user = 'splunk'
+remote.user = 'pdedhia'
 remote.identityFile = "/var/lib/jenkins/.ssh/id_rsa.pem"
 remote.allowAnyHosts = true
 sshPut remote: remote, from: './docker-compose.yaml', into: '.'
